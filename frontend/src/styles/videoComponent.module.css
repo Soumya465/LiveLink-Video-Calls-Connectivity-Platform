@@ -1,0 +1,301 @@
+.meetVideoContainer {
+    height: 100vh;
+    width: 100vw;
+    background: radial-gradient(1200px 800px at 10% 10%, rgba(255,152,57,0.18), transparent 60%),
+        radial-gradient(900px 700px at 90% 20%, rgba(108,99,255,0.14), transparent 55%),
+        linear-gradient(120deg, #0b1020 0%, #0a0f1e 100%);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+}
+
+@media (max-width: 900px) {
+    .layoutMain {
+        grid-template-columns: 1fr;
+    }
+    .chatPanel {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: 78px;
+        height: min(60vh, 520px);
+        z-index: 50;
+    }
+}
+
+@media (max-width: 600px) {
+    .buttonContainers svg {
+        font-size: 2rem;
+    }
+}
+
+.topBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: rgba(10, 15, 30, 0.55);
+    backdrop-filter: blur(10px);
+}
+
+.brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    color: white;
+}
+
+.meetingMeta {
+    color: rgba(255,255,255,0.72);
+    font-size: 0.95rem;
+}
+
+.waitingBanner {
+    margin: 12px 14px 0;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 193, 7, 0.32);
+    background: rgba(255, 193, 7, 0.12);
+    color: white;
+    font-weight: 700;
+}
+
+.joinRequestsPanel {
+    margin: 12px 14px 0;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(10, 15, 30, 0.78);
+    color: white;
+}
+
+.joinRequestsTitle {
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.joinRequestItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.joinRequestName {
+    font-weight: 800;
+}
+
+.joinRequestMeta {
+    color: rgba(255,255,255,0.68);
+    font-size: 0.86rem;
+}
+
+.joinRequestActions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.layoutMain {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 14px;
+    padding: 14px;
+    min-height: 0;
+}
+
+.stage {
+    position: relative;
+    min-height: 0;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    overflow: hidden;
+}
+
+.reactionsOverlay {
+    position: absolute;
+    left: 16px;
+    bottom: 18px;
+    z-index: 12;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+}
+
+.reactionToast {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    max-width: min(360px, 80vw);
+    padding: 9px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(10, 15, 30, 0.82);
+    color: white;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+    animation: reactionFloat 2.6s ease forwards;
+}
+
+.reactionName {
+    color: rgba(255,255,255,0.68);
+    font-size: 0.82rem;
+}
+
+@keyframes reactionFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    14% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    82% {
+        opacity: 1;
+        transform: translateY(-8px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-18px);
+    }
+}
+
+.localPip {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    width: 220px;
+    max-width: 40%;
+    aspect-ratio: 16/10;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(0,0,0,0.35);
+}
+
+.localPip video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.buttonContainers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: rgba(10, 15, 30, 0.55);
+    backdrop-filter: blur(10px);
+}
+
+.reactionControls {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding-right: 8px;
+    margin-right: 4px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+}
+
+.buttonContainers svg {
+    font-size: 3rem;
+}
+
+.conferenceView { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    padding: 12px;
+    min-height: 0;
+}
+
+.conferenceView  video {
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 14px;
+    background: rgba(0,0,0,0.35);
+}
+
+.chatPanel {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(10, 15, 30, 0.55);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.chatHeader {
+    padding: 12px 12px 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chatTitleRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.aiHelperButtons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.chattingArea {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.chattingDisplay {
+    padding: 12px;
+    overflow: auto;
+    min-height: 0;
+    flex: 1;
+}
+
+.msgRow {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.msgBubble {
+    max-width: 85%;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.92);
+}
+
+.msgBubbleMe {
+    margin-left: auto;
+    background: linear-gradient(90deg, rgba(255,152,57,0.25), rgba(108,99,255,0.20));
+    border-color: rgba(255,152,57,0.25);
+}
+
+.msgSender {
+    font-size: 0.8rem;
+    opacity: 0.75;
+    margin-bottom: 4px;
+}
