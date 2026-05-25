@@ -1,0 +1,6 @@
+
+> backend@1.0.0 start
+> node src/app.js
+
+MONGO Connected DB Host: ac-mycdb0j-shard-00-00.vhcm9v5.mongodb.net
+LISTENING ON PORT 8000
