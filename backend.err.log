@@ -1,0 +1,29 @@
+(node:15764) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+AI ERROR: ApiError: {"error":{"code":400,"message":"API key not valid. Please pass a valid API key.","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]}}
+    at throwErrorIfNotOK (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/node_modules/@google/genai/dist/node/index.mjs:13393:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/node_modules/@google/genai/dist/node/index.mjs:13096:13
+    at async Models.generateContent (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/node_modules/@google/genai/dist/node/index.mjs:14501:24)
+    at async callAIWithRetry (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/src/controllers/ai.controller.js:13:14)
+    at async chatWithAi (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/src/controllers/ai.controller.js:103:22) {
+  status: 400
+}
+AI ERROR: ApiError: {"error":{"code":400,"message":"API key not valid. Please pass a valid API key.","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]}}
+    at throwErrorIfNotOK (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/node_modules/@google/genai/dist/node/index.mjs:13393:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/node_modules/@google/genai/dist/node/index.mjs:13096:13
+    at async Models.generateContent (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/node_modules/@google/genai/dist/node/index.mjs:14501:24)
+    at async callAIWithRetry (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/src/controllers/ai.controller.js:13:14)
+    at async chatWithAi (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/src/controllers/ai.controller.js:103:22) {
+  status: 400
+}
+AI ERROR: ApiError: {"error":{"code":400,"message":"API key not valid. Please pass a valid API key.","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]}}
+    at throwErrorIfNotOK (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/node_modules/@google/genai/dist/node/index.mjs:13393:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/node_modules/@google/genai/dist/node/index.mjs:13096:13
+    at async Models.generateContent (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/node_modules/@google/genai/dist/node/index.mjs:14501:24)
+    at async callAIWithRetry (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/src/controllers/ai.controller.js:13:14)
+    at async chatWithAi (file:///C:/Users/MY-PC/Downloads/LiveLink-with-meeting/backend/src/controllers/ai.controller.js:103:22) {
+  status: 400
+}
