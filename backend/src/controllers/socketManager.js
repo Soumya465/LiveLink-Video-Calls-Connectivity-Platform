@@ -37,6 +37,19 @@ function replayRoomMessages(io, socketId, roomId) {
   }
 }
 
+function emitRoomParticipants(io, roomId) {
+  const currentSet = roomConnections.get(roomId) || new Set();
+  const participants = Array.from(currentSet)
+    .map((socketId) => {
+      const socket = io.sockets.sockets.get(socketId);
+      if (!socket) return null;
+      return getDisplayIdentity(socket);
+    })
+    .filter(Boolean);
+
+  io.to(roomId).emit("participants-update", participants);
+}
+
 function approveSocketIntoRoom(io, socket, roomId) {
   const currentSet = roomConnections.get(roomId) || new Set();
 
@@ -54,6 +67,7 @@ function approveSocketIntoRoom(io, socket, roomId) {
   const clients = Array.from(currentSet);
   socket.emit("join-approved", { roomId, isHost: roomHosts.get(roomId) === socket.id });
   io.to(roomId).emit("user-joined", socket.id, clients, socket.data.identity);
+  emitRoomParticipants(io, roomId);
   replayRoomMessages(io, socket.id, roomId);
 }
 
@@ -245,6 +259,7 @@ export const connectToSocket = (server) => {
             io.to(nextHost).emit("host-status", { isHost: true });
           }
           roomConnections.set(roomId, set);
+          emitRoomParticipants(io, roomId);
         }
       }
     });

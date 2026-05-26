@@ -51,6 +51,54 @@
     font-size: 0.95rem;
 }
 
+.participantsPanel {
+    margin: 12px 14px 0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(10, 15, 30, 0.58);
+    color: white;
+}
+
+.participantsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.participantsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.participantChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 32px;
+    max-width: 220px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.participantChip span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.participantChip small {
+    flex: 0 0 auto;
+    color: #8cffc1;
+    font-weight: 800;
+}
+
 .waitingBanner {
     margin: 12px 14px 0;
     padding: 12px 14px;

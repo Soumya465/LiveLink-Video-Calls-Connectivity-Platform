@@ -82,9 +82,9 @@ export default function VideoMeetComponent() {
 
     let [newMessages, setNewMessages] = useState(0);
     const [waitingForApproval, setWaitingForApproval] = useState(false);
-    const [joinApproved, setJoinApproved] = useState(false);
     const [isHost, setIsHost] = useState(false);
     const [joinRequests, setJoinRequests] = useState([]);
+    const [participants, setParticipants] = useState([]);
     const [activeReactions, setActiveReactions] = useState([]);
 
     let [chatMode, setChatMode] = useState("room"); // room | ai
@@ -368,13 +368,11 @@ export default function VideoMeetComponent() {
 
             socketRef.current.on('waiting-for-approval', ({ message }) => {
                 setWaitingForApproval(true);
-                setJoinApproved(false);
                 setToast(message || "Waiting for host approval");
             });
 
             socketRef.current.on('join-approved', () => {
                 setWaitingForApproval(false);
-                setJoinApproved(true);
                 setToast("Host approved your request");
             });
 
@@ -397,6 +395,10 @@ export default function VideoMeetComponent() {
                 setJoinRequests((items) => items.filter((item) => item.socketId !== socketId));
             });
 
+            socketRef.current.on('participants-update', (items = []) => {
+                setParticipants(Array.isArray(items) ? items : []);
+            });
+
             socketRef.current.on('meeting-reaction', ({ reaction, sender }) => {
                 const id = `${Date.now()}-${Math.random()}`;
                 setActiveReactions((items) => [...items, { id, reaction, sender }].slice(-5));
@@ -412,6 +414,7 @@ export default function VideoMeetComponent() {
 
             socketRef.current.on('user-left', (id) => {
                 setVideos((videos) => videos.filter((video) => video.socketId !== id))
+                setParticipants((items) => items.filter((item) => item.socketId !== id));
             })
 
             socketRef.current.on('user-joined', (id, clients) => {
@@ -623,7 +626,8 @@ export default function VideoMeetComponent() {
         return code || "meeting";
     })();
 
-    const participantsCount = 1 + (videos?.length || 0);
+    const participantsCount = participants.length || 1 + (videos?.length || 0);
+    const pendingCount = isHost ? joinRequests.length : 0;
     const meetingParams = new URLSearchParams(window.location.search);
     const scheduledAt = formatSchedule(meetingParams.get("at"));
     const plannedDuration = meetingParams.get("dur");
@@ -692,6 +696,9 @@ export default function VideoMeetComponent() {
                                 Code: <span style={{ color: "white" }}>{meetingCode}</span> · Participants:{" "}
                                 <span style={{ color: "white" }}>{participantsCount}</span> · Time:{" "}
                                 <span style={{ color: "white" }}>{formatElapsed(elapsedSeconds)}</span>
+                                {isHost ? (
+                                    <> Â· Pending: <span style={{ color: pendingCount ? "#ffd166" : "white" }}>{pendingCount}</span></>
+                                ) : null}
                                 {scheduledAt ? (
                                     <> · Scheduled: <span style={{ color: "white" }}>{scheduledAt}</span></>
                                 ) : null}
@@ -724,6 +731,22 @@ export default function VideoMeetComponent() {
                                     </IconButton>
                                 </Badge>
                             </Tooltip>
+                        </div>
+                    </div>
+
+                    <div className={styles.participantsPanel}>
+                        <div className={styles.participantsHeader}>
+                            <span>Connected participants</span>
+                            <span>{participantsCount}</span>
+                        </div>
+                        <div className={styles.participantsList}>
+                            {(participants.length ? participants : [{ socketId: "local", name: username || "You", kind: "guest" }]).map((participant) => (
+                                <div className={styles.participantChip} key={participant.socketId}>
+                                    <span>{participant.name || participant.username || "Guest"}</span>
+                                    {participant.socketId === socketIdRef.current ? <small>You</small> : null}
+                                    {isHost && participant.socketId === socketIdRef.current ? <small>Host</small> : null}
+                                </div>
+                            ))}
                         </div>
                     </div>
 
